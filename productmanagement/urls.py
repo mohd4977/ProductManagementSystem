@@ -25,5 +25,6 @@ router.register(r'products', views.ProductViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api/', include('authenticator.urls'))
+    path('api/', include('authenticator.urls')),
+    path('api/', include('product.urls'))
 ]
