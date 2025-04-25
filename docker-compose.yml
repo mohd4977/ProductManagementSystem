@@ -20,7 +20,7 @@ services:
 
   celery:
     build: .
-    command: celery -A product_management worker -l info
+    command: celery -A productmanagement worker -l info
     volumes:
       - .:/code
     env_file:

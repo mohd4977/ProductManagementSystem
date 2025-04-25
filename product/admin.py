@@ -31,5 +31,3 @@ class ProductAdmin(admin.ModelAdmin):
     def formatted_last_updated(self, obj):
         return localtime(obj.last_updated).strftime('%Y-%m-%d %H:%M:%S')
     formatted_last_updated.short_description = 'Last Updated'
-
-# Register your models here.

@@ -7,20 +7,20 @@ from io import StringIO
 from .models import Product
 
 @shared_task
-def import_csv_task(csv_content):
+def import_csv_task(file_path):
     
     data = []
-
-    f = StringIO(csv_content)
-    reader = csv.DictReader(f)
-    for row in reader:
-        data.append({
-            'sku': row['sku'],
-            'inventory_quantity': int(row['inventory_quantity'])
-        })
-
-    
-
+    try:
+        with open(file_path, newline='', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                data.append({
+                    'sku': row['sku'],
+                    'inventory_quantity': int(row['inventory_quantity'])
+                })
+    except FileNotFoundError:
+        raise Exception(f"CSV file not found at: {file_path}")
+    return data
 
 @shared_task
 def validate_and_update_inventory(data):
@@ -59,3 +59,4 @@ def run_nightly_inventory_chain(csv_content):
         validate_and_update_inventory.s(),
         send_inventory_report.s()
     ).apply_async()
+    return "Report emailed."
