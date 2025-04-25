@@ -118,7 +118,7 @@ docker-compose down
 
 - **URL:** [http://localhost:8000/admin/](http://localhost:8000/admin/)
 - **Login:** Use the superuser credentials you created during setup.
-- **Functionality:** Manage authors, books, members, and loans through the admin panel.
+- **Functionality:** Manage products, group, users through the admin panel.
 
 ### API Endpoints
 
@@ -128,7 +128,7 @@ docker-compose down
   - `/api/webhooks/shopify/inventory/`: Shopify invertory updates.
 - **Access:** Use tools like **Postman**, **cURL**, or the DRF browsable API to interact with the endpoints.
 
-## 🗃️ Database Schema
+## Database Schema
 
 ### Product Model
 - `name`: CharField
